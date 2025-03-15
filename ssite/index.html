@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         nav{
-            cursor: pointer;
             position: sticky;
-            top: 5%;
+            top: 0%;
             bottom: 5%;
             width: 100%;
-            background-color: black;
+            background-color: rgb(0, 0, 0);
             z-index: 1000;
+            animation: fadeIn 10s;
+            animation-fill-mode: both;
         }
         *{
             -webkit-box-sizing: border-box;
@@ -21,6 +22,7 @@
             padding: 0;
         }
         ul{
+            cursor: pointer;
             position: absolute;
             top: 50%;
             left: 60%;
@@ -87,20 +89,22 @@
             font-size: 190%;
             color: white;
             background-color: rgb(0, 0, 0);
-            z-index: 0;
+            z-index: 1000;
             margin-left: 1%;
             margin-top: 1%;
             padding-top: 0%;
             margin-bottom: 0%;
             padding-bottom: 1%;
             text-align: left;
+            animation: fadeIn 10s;
+            animation-fill-mode: both;
         }
         h1 span{
             color: rgb(0, 255, 30);
         }
         body {
             background-color: black;
-            overflow: hidden;
+            overflow: hidden visible;
         }
         .matrix {
             z-index:0;
@@ -114,7 +118,6 @@
 /*ローディング画面の縦横幅を画面いっぱいになるように指定*/
 width: 100vw;
 height: 100vh;
-z-index: 100000;
 /*ローディング画面の表示位置を固定*/
 position: fixed;
 top: 0;
@@ -125,14 +128,8 @@ justify-content: center;
 align-items: center;
 flex-direction: column;
 /*ローディング画面を0.5秒かけて非表示にする*/
-transition: all 0.5s linear;
-}
-
-/*ローディング画面を非表示にする*/
-.loading.loaded {
-/*0.5秒かけてopacityを0にする*/
-opacity: 0;
-visibility: hidden;
+animation: fadeOut 7s;
+animation-fill-mode: both;
 }
 
 .loading-text {
@@ -160,6 +157,93 @@ border-left-color: #2ffe00;
 animation: spinner-rotation 1s linear infinite;
 }
 
+.question1{
+    color: rgb(206, 206, 206);
+    background-color: rgba(255, 255, 255, 0.171);
+    font-size: 40px;
+    position: absolute;
+    top: 60%;
+    left: 0%;
+    font-weight: 700;
+    text-align: left;
+    animation: fadeIn 2s;
+    animation-fill-mode: both;
+    z-index: 0;
+    font-family: monospace;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+    border-right: 3px solid rgb(255, 255, 255);
+    animation: typing 3s steps(50, end) forwards, blink 0.6s infinite;
+}
+
+.question2{
+    color: rgb(206, 206, 206);
+    background-color: rgba(255, 255, 255, 0.171);
+    font-size: 40px;
+    position: absolute;
+    top: 35%;
+    left: 68%;
+    font-weight: 700;
+    text-align: left;
+    animation: fadeIn 10s;
+    animation-fill-mode: both;
+    z-index: 0;
+    font-family: monospace;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+    border-right: 3px solid rgb(255, 255, 255);
+    animation: typing 3s steps(50, end) forwards, blink 0.6s infinite;
+}
+
+.setumei{
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: white 1px solid;
+    border-bottom: white 1px solid;
+    padding-top: 1%;
+    padding-bottom: 2%;
+    text-align: center;
+    color: white;
+}
+.setumei h2{
+    padding-top: 2%;
+    padding-bottom: 3%;
+    font-size: 25px;
+    text-align: center;
+    color: white;
+
+}
+.setumei h3{
+    font-size: 25px;
+    color: white;
+    text-align: center;
+}
+.setumei h3 span{
+    font-size: 30px;
+    color: white;
+    text-align: center;
+    border-bottom: #2ffe00 2px solid;
+}
+
+@keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 47.5%;
+            }
+        }
+
+
+
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+
 /* アニメーションの設定 */
 @keyframes spinner-rotation {
 0% {
@@ -169,11 +253,36 @@ animation: spinner-rotation 1s linear infinite;
     transform: rotate(360deg);
 }
 }
+@keyframes fadeOut {
+    0% {
+        opacity: 1; /*初めに存在する*/
+    }
+    45% {
+        opacity: 0; /*初めに存在する*/
+    }
+    100% {
+        opacity: 0; /*最後に消える*/
+    }
+}
+@keyframes fadeIn {
+    0% {
+        opacity: 0; /*初めに存在する*/
+    }
+    100% {
+        opacity: 1; /*最後に消える*/
+    }
+}
+footer{
+    color: white;
+    text-align: center;
+    bottom: 0;
+}
     </style>
     <title>x</title>
 </head>
 <body>
     <nav>
+        <h1><span>HACKING</span> with LIFE</h1>
         <ul>
             <li><a href="#">Home</a></li>
             <li><a href="#">About</a></li>
@@ -185,12 +294,31 @@ animation: spinner-rotation 1s linear infinite;
             <li><a href="#">Contact</a></li>
         </ul>
     </nav>
-    <h1><span>HACKING</span> with LIFE</h1>
     <canvas id="matrixCanvas"></canvas>
     <script src="matrix.js"></script>
+    <div class="question1"> あなたは、どのくらい知っていますか？</div>
+    <div class="question2"> ハッキングとはなんなのか</div>
     <div class="loading">
         <p class="loading-text"><span>HACKING</span> with LIFE</p>
         <div class="spinner"></div>
     </div>
+
+    <div class="setumei">
+        <h2>
+            このサイトは、ハッキングについての情報を提供するサイトです。<br>
+            ハッキングについての知識を深めることで、セキュリティに対する意識を高めることができます。<br>
+            ぜひ、このサイトを活用して、ハッキングについての正しい知識を身に着けてみてください。
+        </h2>
+        <h3>
+            ※また、このサイトはハッキングを促すためのサイトではありません。<br>
+            悪意のあるハッキングは以下の法律などで禁止されていて、厳しい罰則があります。<br>
+            <span>1.不正アクセス禁止法違反</span>「3年以下の懲役または100万円以下の罰金」<br>
+            <span>2.電子計算機使用詐欺罪</span>「10年以下の懲役」<br>
+            <span>3.電磁計算機損壊等業務妨害罪</span>「5年以下の懲役または100万円以下の罰金」<br>
+        </h3>
+    </div>
+    <footer>
+        <div>&copy;HACKING with LIFE</div>
+    </footer>
 </body>
 </html>
